@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Map - Cabanes</title>
+        <script type="text/javascript" src="js/config.js"></script>
+        <script type="text/javascript">      
+            var map;
+            $(document).ready(function(){            
+                map = new ol.Map({
+                    target: 'map',
+                    layers: [
+                        new ol.layer.Tile({
+                            source: new ol.source.OSM()
+                        })
+                    ]
+                });
+                map.getView().setCenter(ol.proj.transform([6.15,40],"EPSG:4326","EPSG:3857"));
+                map.getView().setZoom(3);
+            });
+        </script>
+        <style type="text/css">        
+            #map {
+                width: 100%;
+                height: 100%;
+            }
+        </style>   
+    </head>
+    <body>
+        <div id="map"></div>
+    </body>
+</html>
