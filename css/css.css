@@ -3,13 +3,16 @@ aside{
     width:30%;
 }
 #map{
-	display: block;
+    display: block;
     width: 70%;
     float:left;
+    position: relative;
 }
 
-#zoom{
-	float: right;
+button{
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
 }
 .resTemplate{
     display: none;

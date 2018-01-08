@@ -14,6 +14,7 @@
                     layers: [
                         new ol.layer.Tile({
                             source: new ol.source.OSM()
+                            
                         })
                     ]
                 });
@@ -44,9 +45,9 @@
             <div class="results">
                 <div class="resTemplate"></div>
             </div>
-            <div id="zoom">
-                <input type="button" value="+" id="zoomIn" class="zoomIn"/>
-                <input type="button" value="-" id="zoomOut" class="zoomOut"/>
+            <div class="zoom">
+                <button class="zoomIn" type="button" title="Zoom in">+</button>
+                <button class="zoomOut" type="button" title="Zoom out">-</button>
             </div>
         </aside>
             <div id="map"></div>
