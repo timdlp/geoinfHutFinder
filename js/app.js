@@ -37,7 +37,9 @@ $(function(){
             var feature = new ol.Feature({
                 geometry: new ol.geom.Point(ol.proj.transform(center,"EPSG:4326", "EPSG:3857"))
             });
+            console.log(feature.getGeometry().getCoordinates());
             resultat.getSource().addFeature(feature);
         });
+
     });
 });
