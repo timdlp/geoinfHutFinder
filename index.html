@@ -2,6 +2,7 @@
     <head>
         <title>Map - Cabanes</title>
         <link rel="stylesheet" type="text/css" href="css/css.css">
+        <script src="js/modernizr.js"></script>
         <script type="text/javascript" src="js/config.js"></script>
         <script src='https://unpkg.com/mapbox@1.0.0-beta9/dist/mapbox-sdk.min.js'></script>
         <script type="text/javascript" src="js/app.js"></script>
@@ -10,19 +11,21 @@
     </head>
     <body>
         <aside>
-            <fieldset id="info">
-	        <legend>Recherche cabane</legend>
-                <label for="code">Nom</label>
-                <input type="text" name="nom" id="nomCabane"/>
-                <button class="searchBtn">Rechercher</button>
-            </fieldset>
+            <div class="RechercheCabanes">
+                <fieldset>
+                    <legend>Recherche cabane</legend>
+                    <label for="code">Nom</label>
+                    <input type="text" name="nom" id="nomCabane"/>
+                    <button class="searchBtn">Rechercher</button>
+                </fieldset>
+            </div>
             <div class="results">
                 <div class="resTemplate"></div>
             </div>
-         
+
         </aside>
-            <div id="map"></div>
-            
- 
+        <div id="map"></div>
+
+
     </body>
 </html>
