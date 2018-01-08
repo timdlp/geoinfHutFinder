@@ -46,4 +46,5 @@ fabric.properties
 
 .gitignore
 .idea/
-css/
+/HTML5Application/nbproject/private/
+/nbproject/private/
