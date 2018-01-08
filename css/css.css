@@ -1,9 +1,16 @@
+aside{
+    float:left;
+    width:30%;
+}
 #map{
 	display: block;
     width: 70%;
-    float: right;
+    float:left;
 }
 
 #zoom{
 	float: right;
+}
+.resTemplate{
+    display: none;
 }

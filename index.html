@@ -33,20 +33,21 @@
 
     </head>
     <body>
-        <div id="map"></div>
-        
-        <form action="" id="hutFinder">
+        <aside>
             <fieldset id="info">
 	        <legend>Recherche cabane</legend>
                 <label for="code">Nom</label>
                 <input type="text" name="nom" id="nomCabane"/>
                 <button class="searchBtn">Rechercher</button>
             </fieldset>
-        </form>
-        
+            <div class="results">
+                <div class="resTemplate"></div>
+            </div>
             <div id="zoom">
                 <input type="button" value="+" id="zoomIn" class="zoomIn"/>
                 <input type="button" value="-" id="zoomOut" class="zoomOut"/>
             </div>
+        </aside>
+            <div id="map"></div>
     </body>
 </html>
