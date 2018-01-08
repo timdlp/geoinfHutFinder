@@ -9,11 +9,27 @@ aside{
     position: relative;
 }
 
-button{
-    align-items: flex-start;
-    cursor: default;
-    box-sizing: border-box;
+.ol-zoom{
+    top: .5em;
+    left: .5em;
+    position: absolute;
+    padding: 2px;
+    background-color: #7ccd83;
+    opacity: 50%;
 }
+
+.ol-control button{
+    display: block;
+    background-color: #d6f3d9;
+    margin: 0.5px;
+    text-align: center;
+    height: 1.5em;
+    width: 1.5em;
+    line-height: .4em;
+    border: none;
+}
+
+
 .resTemplate{
     display: none;
 }
