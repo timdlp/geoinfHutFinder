@@ -3,6 +3,7 @@
  */
 var map;
 var mapboxClient = new MapboxClient('pk.eyJ1IjoidGltZGxwIiwiYSI6ImNqYjZraDM0NjB1aWEyd216M2pnZWRsZHgifQ.7WtnMDNVwnS7hjzhRCWe3A');
+var MQ_SMARTPHONE = '(max-width: 41em)';
 
 $(function(){
     map = new ol.Map({
@@ -42,4 +43,14 @@ $(function(){
         });
 
     });
+    
+    $(window).on("resize", function(){
+        if(Modernizr.mq(MQ_SMARTPHONE)){
+            $("aside").show();
+        } else {    
+            $("aside").toggle();
+        }
+    });
+    $(window).trigger("resize");
+    
 });
