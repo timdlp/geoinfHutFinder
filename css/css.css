@@ -1,3 +1,16 @@
+/****************************** FONT FACE *************************************/
+@font-face {
+    font-family: 'icomoon';
+    src:  url('fonts/icomoon.eot?my1vva');
+    src:  url('fonts/icomoon.eot?my1vva#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?my1vva') format('truetype'),
+        url('fonts/icomoon.woff?my1vva') format('woff'),
+        url('fonts/icomoon.svg?my1vva#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*************************** Style global *********************/
 * {
     font-family: 'arial', sans-serif;
 }
@@ -15,7 +28,7 @@ aside{
 }
 
 
- /************************ zoom **********************/ 
+/************************ zoom **********************/ 
 .ol-zoom{
     top: .5em;
     left: .5em;
@@ -43,16 +56,21 @@ aside{
 
 /****************************** Responsive *********************************/
 @media screen and (max-width: 41em){
-    aside{
-    
-    font-family: icomoon;
-    content: "\e9bf";
+    aside:before{
+        font-size: 1.5em;    
+        width: 50%;
+        display: block;
+        float: left;
+        speak: none;
+        font-family: icomoon;
+        content: "\e9bf";
 
-}
-#map{
-    display: block;
-    width: 100%;
-    float:left;
-    position: relative;
-}
+    }
+
+    #map{
+        display: block;
+        width: 50%;
+        float:right;
+        position: relative;
+    }
 }

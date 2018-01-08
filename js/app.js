@@ -44,10 +44,9 @@ $(function(){
     
     $(window).on("resize", function(){
         if(Modernizr.mq(MQ_SMARTPHONE)){
-            $("aside").hide();
-        } else {
-            
             $("aside").show();
+        } else {    
+            $("aside").toggle();
         }
     });
     $(window).trigger("resize");
