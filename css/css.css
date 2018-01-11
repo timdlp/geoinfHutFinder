@@ -23,7 +23,7 @@ aside{
 #map{
     display: block;
     width: 70%;
-    float:left;
+    float:right;
     position: relative;
 }
 
@@ -66,6 +66,16 @@ aside{
         content: "\e9bf";
 
     }
+    
+    aside:hover:before{
+        color: blue;
+    }
+    
+    .RechercheCabanes{
+        display: none;
+    }
+    
+   
 
     #map{
         display: block;

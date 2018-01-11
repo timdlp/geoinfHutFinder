@@ -41,12 +41,18 @@ $(function(){
             resultat.getSource().addFeature(feature);
         });
     });
-    
+
+// responsive
     $(window).on("resize", function(){
         if(Modernizr.mq(MQ_SMARTPHONE)){
-            $("aside").show();
+            $("aside").off("click");
+            $("aside").on("click", function(){
+                $("aside").toggle();  
+                
+            });
         } else {    
-            $("aside").toggle();
+            $("aside").off("click");
+            $("aside").show();
         }
     });
     $(window).trigger("resize");
