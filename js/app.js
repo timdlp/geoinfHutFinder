@@ -43,7 +43,7 @@ $(function(){
                 source: new ol.source.Vector({
                     url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+centerPSM[0]+"&y="+centerPSM[1],
                     format: new ol.format.GeoJSON({
-                        featureProjection:"EPSG:3857"
+                        defaultDataProjection:"EPSG:3857"
                     })
                 })
             });
