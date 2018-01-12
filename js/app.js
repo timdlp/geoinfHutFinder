@@ -52,14 +52,10 @@ $(function(){
         });
 
     });
-<<<<<<< HEAD
-
 // responsive
+
     $(window).on("resize", function(){
-=======
-    
-    /*$(window).on("resize", function(){
->>>>>>> origin/Front-end
+
         if(Modernizr.mq(MQ_SMARTPHONE)){
             $("aside").off("click");
             $("aside").on("click", function(){
@@ -71,6 +67,6 @@ $(function(){
             $("aside").show();
         }
     });
-    $(window).trigger("resize");*/
+    $(window).trigger("resize");
     
 });
