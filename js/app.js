@@ -29,21 +29,37 @@ $(function(){
     $('.searchBtn').on('click',function(){
         resultat.getSource().clear();
         mapboxClient.geocodeForward($('#nomCabane').val(),function(err,data,res){
-            console.log(data);
             var x = data.features[0].geometry.coordinates[0];
             var y = data.features[0].geometry.coordinates[1];
             var center = [x,y];
-            map.getView().setCenter(ol.proj.transform(center,"EPSG:4326", "EPSG:3857"));
+            var centerPSM = ol.proj.transform(center,"EPSG:4326", "EPSG:3857");
+            map.getView().setCenter(centerPSM);
             map.getView().setZoom(12);
             var feature = new ol.Feature({
-                geometry: new ol.geom.Point(ol.proj.transform(center,"EPSG:4326", "EPSG:3857"))
+                geometry: new ol.geom.Point(centerPSM)
             });
             resultat.getSource().addFeature(feature);
+            var cabanes = new ol.layer.Vector({
+                source: new ol.source.Vector({
+                    url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+centerPSM[0]+"&y="+centerPSM[1],
+                    format: new ol.format.GeoJSON({
+                        featureProjection:"EPSG:3857"
+                    })
+                })
+            });
+            map.addLayer(cabanes);
+            console.log(map.getLayers());
         });
+
     });
+<<<<<<< HEAD
 
 // responsive
     $(window).on("resize", function(){
+=======
+    
+    /*$(window).on("resize", function(){
+>>>>>>> origin/Front-end
         if(Modernizr.mq(MQ_SMARTPHONE)){
             $("aside").off("click");
             $("aside").on("click", function(){
@@ -55,6 +71,6 @@ $(function(){
             $("aside").show();
         }
     });
-    $(window).trigger("resize");
+    $(window).trigger("resize");*/
     
 });
