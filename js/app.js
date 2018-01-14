@@ -5,7 +5,7 @@ var map;
 var mapboxClient = new MapboxClient('pk.eyJ1IjoidGltZGxwIiwiYSI6ImNqYjZraDM0NjB1aWEyd216M2pnZWRsZHgifQ.7WtnMDNVwnS7hjzhRCWe3A');
 var MQ_SMARTPHONE = '(max-width: 41em)';
 
-$(function(){
+$(function () {
     map = new ol.Map({
         target: 'map',
         layers: [
@@ -22,17 +22,17 @@ $(function(){
     map.getView().setZoom(3);
 
     $('#nomCabane').keyup(function (e) {
-        if(e.keyCode == 13){
+        if (e.keyCode == 13) {
             $('.searchBtn').click();
         }
     });
-    $('.searchBtn').on('click',function(){
+    $('.searchBtn').on('click', function () {
         resultat.getSource().clear();
-        mapboxClient.geocodeForward($('#nomCabane').val(),function(err,data,res){
+        mapboxClient.geocodeForward($('#nomCabane').val(), function (err, data, res) {
             var x = data.features[0].geometry.coordinates[0];
             var y = data.features[0].geometry.coordinates[1];
-            var center = [x,y];
-            var centerPSM = ol.proj.transform(center,"EPSG:4326", "EPSG:3857");
+            var center = [x, y];
+            var centerPSM = ol.proj.transform(center, "EPSG:4326", "EPSG:3857");
             map.getView().setCenter(centerPSM);
             map.getView().setZoom(12);
             var feature = new ol.Feature({
@@ -41,9 +41,9 @@ $(function(){
             resultat.getSource().addFeature(feature);
             var cabanes = new ol.layer.Vector({
                 source: new ol.source.Vector({
-                    url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+centerPSM[0]+"&y="+centerPSM[1],
+                    url: "http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php" + "?x=" + centerPSM[0] + "&y=" + centerPSM[1],
                     format: new ol.format.GeoJSON({
-                        defaultDataProjection:"EPSG:3857"
+                        defaultDataProjection: "EPSG:3857"
                     })
                 })
             });
@@ -52,21 +52,24 @@ $(function(){
         });
 
     });
+
 // responsive
-
-    $(window).on("resize", function(){
-
-        if(Modernizr.mq(MQ_SMARTPHONE)){
+    $(window).on("resize", function () {
+        if (Modernizr.mq(MQ_SMARTPHONE)) {
             $("aside").off("click");
-            $("aside").on("click", function(){
-                $("aside").toggle();  
-                
+
+            $("aside").on("click", function () {
+                $(".RechercheCabanes").show();
+                console.log("dxqe");
             });
-        } else {    
+
+        } else {
             $("aside").off("click");
-            $("aside").show();
+            console.log("de");
+            $(".RechercheCabanes").show();
         }
+        ;
     });
     $(window).trigger("resize");
-    
+
 });
