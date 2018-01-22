@@ -11,7 +11,7 @@ $(function(){
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM({
-                  attributions:"© OpenStreetMap"
+                  attributions:"Données cartographiques : © 2018 OpenStreetMap et ses contributeurs."
                 })
             })
         ]
