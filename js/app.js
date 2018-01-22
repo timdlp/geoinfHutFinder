@@ -39,25 +39,6 @@ $(function(){
         });
 
     });
-// responsive
-
-    $(window).on("resize", function(){
-      
-
-        if(Modernizr.mq(MQ_SMARTPHONE)){
-            $("aside").off("click");
-            $("aside").on("click", function(){
-                $(".RechercheCabanes").show();
-
-            });
-        } else {
-            $("aside").off("click");
-            $(".RechercheCabanes").show();
-        }
-    });
-    $(window).trigger("resize");
-
-
 // TESTS
 function showResults(data){
   $('.results').empty();
@@ -108,4 +89,82 @@ $('.results').on('click','a',function(){
   y = $(this).attr('data-y');
   showPlace([x,y]);
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// responsive
+
+    $(window).on("resize", function(){
+        if(Modernizr.mq(MQ_SMARTPHONE)){
+            $(".icon").off("click");
+            $(".icon").on("click", function(){
+                $("aside").toggle();
+                $("aside").toggleClass('hidden');
+                $('#map').toggleClass('half');
+                map.updateSize();
+            });
+        } else {
+            $(".icon").off("click");
+            $("aside").toggle();
+        }
+    });
+    $(window).trigger("resize");
+
 });
