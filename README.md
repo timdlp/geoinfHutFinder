@@ -10,3 +10,5 @@ Objectifs :
 Ressources :
 * l'API de géocodage proposé par Mapbox : https://www.mapbox.com/api-documentation/#geocoding
 * les géodonnées des cabanes : [world_cabanes.zip](http://mediamaps.ch/lib/exe/fetch.php?media=geoinf17:world_cabanes.zip)
+
+## Démarche

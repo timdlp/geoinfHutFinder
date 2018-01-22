@@ -10,7 +10,9 @@ $(function(){
         target: 'map',
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.OSM()
+                source: new ol.source.OSM({
+                  attributions:"© OpenStreetMaps"
+                })
             })
         ]
     });
@@ -59,14 +61,14 @@ $(function(){
         if(Modernizr.mq(MQ_SMARTPHONE)){
             $("aside").off("click");
             $("aside").on("click", function(){
-                $("aside").toggle();  
-                
+                $("aside").toggle();
+
             });
-        } else {    
+        } else {
             $("aside").off("click");
             $("aside").show();
         }
     });
     $(window).trigger("resize");
-    
+
 });
