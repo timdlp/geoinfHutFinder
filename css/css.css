@@ -30,7 +30,7 @@ header > img{
     display: block;
     margin-left: auto;
     margin-right: auto
-      
+
 }
 
 #map{
@@ -42,7 +42,7 @@ header > img{
 }
 
 
-/************************ zoom **********************/ 
+/************************ zoom **********************/
 .ol-zoom{
     top: .5em;
     left: .5em;
@@ -70,34 +70,37 @@ header > img{
 
 /****************************** Responsive *********************************/
 @media screen and (max-width: 41em){
-    aside:before{
-        font-size: 1.5em;    
-        width: 50%;
+    div.icon:before{
+        font-size: 1.5em;
         display: block;
         float: left;
         speak: none;
         font-family: icomoon;
         content: "\e9bf";
-
     }
-    
-    aside:hover:before{
+
+    div.icon:hover:before{
         color: #009933;
     }
-    
-    .RechercheCabanes{
+
+    aside{
         display: none;
     }
-    
-   
+    aside.hidden{
+      width:0%;
+    }
+
 
     #map{
         display: block;
-        width: 50%;
+        width: 100%;
         float:right;
         position: relative;
     }
-    
+    #map.half{
+      width:50%;
+    }
+
     header > img{
     height: 10%;
     width: 50%;
@@ -105,6 +108,6 @@ header > img{
     display: block;
     margin-left: auto;
     margin-right: auto
-      
+
 }
 }
