@@ -62,12 +62,12 @@ $(function(){
         if(Modernizr.mq(MQ_SMARTPHONE)){
             $("aside").off("click");
             $("aside").on("click", function(){
-                $("aside").toggle();
+                $(".RechercheCabanes").show();
 
             });
         } else {
             $("aside").off("click");
-            $("aside").show();
+            $(".RechercheCabanes").show();
         }
     });
     $(window).trigger("resize");
