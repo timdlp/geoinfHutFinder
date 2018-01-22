@@ -4,7 +4,20 @@
 var map;
 var mapboxClient = new MapboxClient('pk.eyJ1IjoidGltZGxwIiwiYSI6ImNqYjZraDM0NjB1aWEyd216M2pnZWRsZHgifQ.7WtnMDNVwnS7hjzhRCWe3A');
 var MQ_SMARTPHONE = '(max-width: 41em)';
-
+var greenStyle = new ol.style.Style({
+  image: new ol.style.Icon({
+    src:"img/icon_green.png",
+    anchor:[0.5,1],
+    scale:0.6
+  })
+});
+var redStyle = new ol.style.Style({
+  image: new ol.style.Icon({
+    src:"img/icon_red.png",
+    anchor:[0.5,1],
+    scale:0.6
+  })
+});
 $(function(){
   var RESULT_TEMPLATE = $('.resTemplate').clone();
     map = new ol.Map({
@@ -67,8 +80,10 @@ function showPlace(center){
   var feature = new ol.Feature({
       geometry: new ol.geom.Point(center)
   });
+  feature.setStyle(greenStyle);
   resultat.getSource().addFeature(feature);
-
+  x = center[0];
+  y = center[1];
   var cabanes = new ol.layer.Vector({
       source: new ol.source.Vector({
           url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y,
@@ -77,6 +92,7 @@ function showPlace(center){
           })
       })
   });
+  cabanes.setStyle(redStyle);
   map.addLayer(cabanes);
 
 }
