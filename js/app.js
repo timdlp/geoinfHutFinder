@@ -42,6 +42,7 @@ $(function(){
 // responsive
 
     $(window).on("resize", function(){
+      
 
         if(Modernizr.mq(MQ_SMARTPHONE)){
             $("aside").off("click");
