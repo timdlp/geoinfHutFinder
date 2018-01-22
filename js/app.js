@@ -6,6 +6,7 @@ var mapboxClient = new MapboxClient('pk.eyJ1IjoidGltZGxwIiwiYSI6ImNqYjZraDM0NjB1
 var MQ_SMARTPHONE = '(max-width: 41em)';
 
 $(function(){
+  var RESULT_TEMPLATE = $('.resTemplate').clone();
     map = new ol.Map({
         target: 'map',
         layers: [
@@ -31,6 +32,7 @@ $(function(){
     $('.searchBtn').on('click',function(){
         resultat.getSource().clear();
         mapboxClient.geocodeForward($('#nomCabane').val(),function(err,data,res){
+            showResults(data);
             var x = data.features[0].geometry.coordinates[0];
             var y = data.features[0].geometry.coordinates[1];
             var center = [x,y];
@@ -50,7 +52,6 @@ $(function(){
                 })
             });
             map.addLayer(cabanes);
-            console.log(map.getLayers());
         });
 
     });
@@ -70,5 +71,17 @@ $(function(){
         }
     });
     $(window).trigger("resize");
+
+
+// TESTS
+function showResults(data){
+  $('.results').empty();
+  $(data.features).each( function(index,element){
+    var result = RESULT_TEMPLATE.clone();
+    result.removeClass('resTemplate');
+    result.find('a').html(element.place_name);
+    result.appendTo('.results');
+  })
+}
 
 });
