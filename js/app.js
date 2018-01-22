@@ -36,15 +36,6 @@ $(function(){
             var y = $('.results').find('.place').attr('data-y');
             var center = [x,y];
             showPlace(center);
-            var cabanes = new ol.layer.Vector({
-                source: new ol.source.Vector({
-                    url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y,
-                    format: new ol.format.GeoJSON({
-                        defaultDataProjection:"EPSG:3857"
-                    })
-                })
-            });
-            map.addLayer(cabanes);
         });
 
     });
@@ -96,6 +87,20 @@ function showPlace(center){
       geometry: new ol.geom.Point(center)
   });
   resultat.getSource().addFeature(feature);
+
+  var cabanes = new ol.layer.Vector({
+      source: new ol.source.Vector({
+          url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y,
+          format: new ol.format.GeoJSON({
+              defaultDataProjection:"EPSG:3857"
+          })
+      })
+  });
+  map.addLayer(cabanes);
+
+}
+
+function lookUpForHuts(){
 
 }
 $('.results').on('click','a',function(){
