@@ -178,7 +178,7 @@ $('.results').on('click','a',function(){
             });
         } else {
             $(".icon").off("click");
-            $("aside").toggle();
+            $("aside").show();
         }
     });
     $(window).trigger("resize");
