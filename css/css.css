@@ -18,7 +18,17 @@
 aside{
     float:left;
     width:30%;
+    height: 100%;
+    position: relative;
+}
 
+
+header > img{
+    height: 100px;
+    width: 80px;
+    padding-bottom: 2em;
+    
+    
 }
 #map{
     display: block;
