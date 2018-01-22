@@ -22,6 +22,10 @@ aside{
     position: relative;
 }
 
+.close {
+    display: none;
+}
+
 
 header > img{
     height: 15%;
@@ -30,7 +34,7 @@ header > img{
     display: block;
     margin-left: auto;
     margin-right: auto
-      
+
 }
 
 #map{
@@ -80,16 +84,18 @@ header > img{
         content: "\e9bf";
 
     }
-    
+
     aside:hover:before{
         color: #009933;
     }
-    
+
     .RechercheCabanes{
         display: none;
     }
-    
-   
+
+    .close {
+        display: none;
+    }
 
     #map{
         display: block;
@@ -97,14 +103,14 @@ header > img{
         float:right;
         position: relative;
     }
-    
+
     header > img{
-    height: 10%;
-    width: 50%;
-    padding-bottom: 1em;
-    display: block;
-    margin-left: auto;
-    margin-right: auto
-      
-}
+        height: 10%;
+        width: 50%;
+        padding-bottom: 1em;
+        display: block;
+        margin-left: auto;
+        margin-right: auto
+
+    }
 }
