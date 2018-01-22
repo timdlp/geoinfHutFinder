@@ -11,7 +11,7 @@ $(function(){
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM({
-                  attributions:"© OpenStreetMaps"
+                  attributions:"© OpenStreetMap"
                 })
             })
         ]
