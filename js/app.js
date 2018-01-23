@@ -69,7 +69,7 @@ $(function(){
     map.addLayer(cabanes);
     map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
     map.getView().setZoom(4);
-    map.on('click',function(event){
+    map.on('singleclick',function(event){
       coord = event.coordinate;
       pixel = event.pixel;
       map.forEachFeatureAtPixel(pixel,function(feature){
