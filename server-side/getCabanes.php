@@ -8,7 +8,7 @@
 error_reporting(E_ALL);
 require_once 'GeoManager.php';
 $poi = urldecode($_GET['poi']);
-$conn = new Connection("host=pingouin.heig-vd.ch port=5432 dbname=timothee.delapier user=timothee.delapier password=testm44");
+$conn = new Connection("host=pingouin.heig-vd.ch port=5432 dbname=timothee.delapier user=timothee.delapier password=*******");
 
 $query = "SELECT title, elevation, ST_AsGeoJSON(wkb_geometry) from ogrgeojson WHERE ST_DWithin(wkb_geometry,POINT($poi),10000)";
 $result = $conn->selectQuery($query);
