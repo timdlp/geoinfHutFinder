@@ -21,6 +21,23 @@ var redStyle = new ol.style.Style({
 $(function(){
   var RESULT_TEMPLATE = $('.resTemplate').clone();
   var mr = Math.random();
+  /**
+         * Elements that make up the popup.
+         */
+        var container = document.getElementById('popup');
+        var content = document.getElementById('popup-content');
+        var closer = document.getElementById('popup-closer');
+
+  /**
+   * Create an overlay to anchor the popup to the map.
+   */
+  var overlay = new ol.Overlay({
+    element: container,
+    autoPan: true,
+    autoPanAnimation: {
+      duration: 250
+    }
+  });
     map = new ol.Map({
         target: 'map',
         layers: [
@@ -29,7 +46,8 @@ $(function(){
                   attributions:"Données cartographiques : © 2018 OpenStreetMap et ses contributeurs."
                 })
             })
-        ]
+        ],
+         overlays: [overlay]
     });
     var resultat = new ol.layer.Vector({
         source: new ol.source.Vector()
@@ -37,14 +55,26 @@ $(function(){
     var cabanes = new ol.layer.Vector({
         source: new ol.source.Vector()
     });
+
+          /**
+      * Add a click handler to hide the popup.
+      * @return {boolean} Don't follow the href.
+      */
+     closer.onclick = function() {
+       overlay.setPosition(undefined);
+       closer.blur();
+       return false;
+     };
     map.addLayer(resultat);
     map.addLayer(cabanes);
     map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
     map.getView().setZoom(4);
     map.on('click',function(event){
-      pixel = event.pixel
+      coord = event.coordinate;
+      pixel = event.pixel;
       map.forEachFeatureAtPixel(pixel,function(feature){
-        console.log(feature.get('name'),feature.get('elevation'));
+        content.innerHTML = '<b>'+feature.get('name')+'</b><div class="elevation">'+feature.get('elevation')+' m</div>';
+        overlay.setPosition(coord);
       },{
         layerFilter: function(layer){
           return layer === cabanes;
@@ -196,5 +226,8 @@ $('.results').on('click','a',function(){
         }
     });
     $(window).trigger("resize");
+
+
+
 
 });
