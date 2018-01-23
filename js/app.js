@@ -41,6 +41,12 @@ $(function(){
     map.addLayer(cabanes);
     map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
     map.getView().setZoom(4);
+    map.on('click',function(event){
+      pixel = event.pixel
+      map.forEachFeatureAtPixel(pixel,function(feature){
+        console.log(feature.get('name'),feature.get('elevation'));
+      });
+    });
 
     $('#nomCabane').keyup(function (e) {
         if(e.keyCode == 13){
@@ -107,6 +113,7 @@ $('.results').on('click','a',function(){
   x = $(this).attr('data-x');
   y = $(this).attr('data-y');
   showPlace([x,y]);
+  lookUpForHuts([x,y]);
 });
 
 
