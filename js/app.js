@@ -45,6 +45,10 @@ $(function(){
       pixel = event.pixel
       map.forEachFeatureAtPixel(pixel,function(feature){
         console.log(feature.get('name'),feature.get('elevation'));
+      },{
+        layerFilter: function(layer){
+          return layer === cabanes;
+        }
       });
     });
 
