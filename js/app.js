@@ -20,6 +20,7 @@ var redStyle = new ol.style.Style({
 });
 $(function(){
   var RESULT_TEMPLATE = $('.resTemplate').clone();
+  var mr = Math.random();
     map = new ol.Map({
         target: 'map',
         layers: [
@@ -33,7 +34,11 @@ $(function(){
     var resultat = new ol.layer.Vector({
         source: new ol.source.Vector()
     });
+    var cabanes = new ol.layer.Vector({
+        source: new ol.source.Vector()
+    });
     map.addLayer(resultat);
+    map.addLayer(cabanes);
     map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
     map.getView().setZoom(4);
 
@@ -49,6 +54,7 @@ $(function(){
             var y = $('.results').find('.place').attr('data-y');
             var center = [x,y];
             showPlace(center);
+            lookUpForHuts(center);
         });
 
     });
@@ -82,23 +88,20 @@ function showPlace(center){
   });
   feature.setStyle(greenStyle);
   resultat.getSource().addFeature(feature);
-  x = center[0];
-  y = center[1];
-  var cabanes = new ol.layer.Vector({
-      source: new ol.source.Vector({
-          url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y,
-          format: new ol.format.GeoJSON({
-              defaultDataProjection:"EPSG:3857"
-          })
-      })
-  });
-  cabanes.setStyle(redStyle);
-  map.addLayer(cabanes);
-
 }
 
-function lookUpForHuts(){
-
+function lookUpForHuts(center){
+  cabanes.getSource().clear();
+  x = center[0];
+  y = center[1];
+  source =  new ol.source.Vector({
+        url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y+"&autokey="+mr,
+        format: new ol.format.GeoJSON({
+            defaultDataProjection:"EPSG:3857"
+        })
+  });
+  cabanes.setSource(source);
+  cabanes.setStyle(redStyle);
 }
 $('.results').on('click','a',function(){
   x = $(this).attr('data-x');
