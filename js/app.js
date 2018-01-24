@@ -21,7 +21,7 @@ var redStyle = new ol.style.Style({
 $(function(){
   var RESULT_TEMPLATE = $('.resTemplate').clone();
   var mr = Math.random();
-  /**
+        /**
          * Elements that make up the popup.
          */
         var container = document.getElementById('popup');
@@ -43,7 +43,7 @@ $(function(){
         layers: [
             new ol.layer.Tile({
                 source: new ol.source.OSM({
-                  attributions:"Données cartographiques : © 2018 OpenStreetMap et ses contributeurs."
+                  attributions:"© 2018 OpenStreetMap et ses contributeurs. Application réalisée par C.Porchet et T.Delapierre"
                 })
             })
         ],
@@ -69,7 +69,7 @@ $(function(){
     map.addLayer(cabanes);
     map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
     map.getView().setZoom(4);
-    map.on('singleclick',function(event){
+    map.on('click',function(event){
       coord = event.coordinate;
       pixel = event.pixel;
       map.forEachFeatureAtPixel(pixel,function(feature){
@@ -90,8 +90,8 @@ $(function(){
     $('.searchBtn').on('click',function(){
         mapboxClient.geocodeForward($('#nomCabane').val(),function(err,data,res){
             showResults(data);
-            var x = $('.results').find('.place').attr('data-x');
-            var y = $('.results').find('.place').attr('data-y');
+            var x = Number($('.results').find('.place').attr('data-x'));
+            var y = Number($('.results').find('.place').attr('data-y'));
             var center = [x,y];
             showPlace(center);
             lookUpForHuts(center);
@@ -132,8 +132,8 @@ function showPlace(center){
 
 function lookUpForHuts(center){
   cabanes.getSource().clear();
-  x = center[0];
-  y = center[1];
+  var x = center[0];
+  var y = center[1];
   source =  new ol.source.Vector({
         url:"http://pingouin.heig-vd.ch/~timothee.delapier/geoInf/getCabanes.php"+"?x="+x+"&y="+y+"&autokey="+mr,
         format: new ol.format.GeoJSON({
@@ -144,8 +144,8 @@ function lookUpForHuts(center){
   cabanes.setStyle(redStyle);
 }
 $('.results').on('click','a',function(){
-  x = $(this).attr('data-x');
-  y = $(this).attr('data-y');
+  var x = Number($(this).attr('data-x'));
+  var y = Number($(this).attr('data-y'));
   showPlace([x,y]);
   lookUpForHuts([x,y]);
 });
@@ -226,8 +226,5 @@ $('.results').on('click','a',function(){
         }
     });
     $(window).trigger("resize");
-
-
-
 
 });
