@@ -90,8 +90,8 @@ $(function(){
     $('.searchBtn').on('click',function(){
         mapboxClient.geocodeForward($('#nomCabane').val(),function(err,data,res){
             showResults(data);
-            var x = $('.results').find('.place').attr('data-x');
-            var y = $('.results').find('.place').attr('data-y');
+            var x = Number($('.results').find('.place').attr('data-x'));
+            var y = Number($('.results').find('.place').attr('data-y'));
             var center = [x,y];
             showPlace(center);
             lookUpForHuts(center);
@@ -144,8 +144,8 @@ function lookUpForHuts(center){
   cabanes.setStyle(redStyle);
 }
 $('.results').on('click','a',function(){
-  var x = $(this).attr('data-x');
-  var y = $(this).attr('data-y');
+  var x = Number($(this).attr('data-x'));
+  var y = Number($(this).attr('data-y'));
   showPlace([x,y]);
   lookUpForHuts([x,y]);
 });
