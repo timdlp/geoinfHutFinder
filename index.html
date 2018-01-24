@@ -3,6 +3,7 @@
 <head>
   <title>Map - Cabanes</title>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://openlayers.org/en/v4.6.4/css/ol.css" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/css.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://openlayers.org/en/v4.6.4/build/ol-debug.js"></script>
@@ -15,17 +16,24 @@
     <img src="img/titre.png" alt="Hut finder logo" title="Hut finder logo" />
   </header>
   <div class="icon"></div>
-  <aside>
+  <section class="content">
+    <aside>
+      <h2>HutFinder</h2>
     <div class="RechercheCabanes">
-      <fieldset>
-        <legend>Recherche cabane</legend>
-        <label for="code">Nom</label>
-        <input type="text" name="nom" id="nomCabane" />
+        <input type="text" name="nom" id="nomCabane" placeholder="Entrez le lieu recherché"/>
         <button class="searchBtn">Rechercher</button>
-      </fieldset>
     </div>
-        <div class="results">
+    <h3 class="searchResHeading">Résultats de la recherche</h3>
+    <div class="results">
       <div class="resTemplate result"><a class="place" href="#"></a></div>
+    </div>
+    <h3 class="searchResHutHeading">Cabanes trouvées</h3>
+    <div class="hutResults">
+      <div class="result notice">
+      </div>
+      <div class="resHutTemplate result">
+        <a class="place"href="#"></a>
+      </div>
     </div>
       </aside>
   <div id="map"></div>
@@ -33,5 +41,6 @@
     <a href="#" id="popup-closer" class="ol-popup-closer"></a>
     <div id="popup-content"></div>
   </div>
+</section>
 </body>
 </html>
