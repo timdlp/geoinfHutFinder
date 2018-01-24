@@ -18,6 +18,9 @@ var redStyle = new ol.style.Style({
     scale:0.6
   })
 });
+var attribution = new ol.control.Attribution({
+        collapsible: false
+      });
 $(function(){
   var RESULT_TEMPLATE = $('.resTemplate').clone();
   var mr = Math.random();
@@ -42,12 +45,11 @@ $(function(){
         target: 'map',
         layers: [
             new ol.layer.Tile({
-                source: new ol.source.OSM({
-                  attributions:"© 2018 OpenStreetMap et ses contributeurs. Application réalisée par C.Porchet et T.Delapierre"
-                })
+                source: new ol.source.OSM()
             })
         ],
-         overlays: [overlay]
+         overlays: [overlay],
+         controls: ol.control.defaults({attribution: false}).extend([attribution])
     });
     var resultat = new ol.layer.Vector({
         source: new ol.source.Vector()
@@ -73,7 +75,9 @@ $(function(){
       coord = event.coordinate;
       pixel = event.pixel;
       map.forEachFeatureAtPixel(pixel,function(feature){
-        content.innerHTML = '<b>'+feature.get('name')+'</b><div class="elevation">'+feature.get('elevation')+' m</div>';
+        var distance = Number(feature.get('distance'))/1000;
+        var distancePretty = Math.round(distance*100)/100;
+        content.innerHTML = '<b>'+feature.get('name')+'</b><div class="elevation">'+feature.get('elevation')+' m</div><div class="distance">Distance '+distancePretty+' km</div>';
         overlay.setPosition(coord);
       },{
         layerFilter: function(layer){
@@ -111,7 +115,8 @@ function showResults(data){
     result.find('a').attr('data-x',center[0]);
     result.find('a').attr('data-y',center[1]);
     result.appendTo('.results');
-  })
+  });
+  $('.results').find('a').first().addClass('current');
 }
 
 function convert3857(center){
@@ -143,7 +148,10 @@ function lookUpForHuts(center){
   cabanes.setSource(source);
   cabanes.setStyle(redStyle);
 }
-$('.results').on('click','a',function(){
+
+$('.results').delegate('a','click',function(){
+  $('.current').removeClass('current');
+  $(this).addClass('current');
   var x = Number($(this).attr('data-x'));
   var y = Number($(this).attr('data-y'));
   showPlace([x,y]);
