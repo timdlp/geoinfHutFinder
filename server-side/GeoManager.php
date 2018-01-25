@@ -5,7 +5,7 @@
  * Date: 08.01.18
  * Time: 14:29
  */
-<?php
+
 class Connection {
 
     private $CONFIG;
@@ -65,4 +65,3 @@ class FeatureCollection
     }
 }
 ?>
-
