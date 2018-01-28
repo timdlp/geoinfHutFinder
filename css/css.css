@@ -60,7 +60,7 @@ section.content{
 .results .result, .hutResults .result{
   height: 50px;
 }
-.results div:nth-child(even){
+.results div:nth-child(even), .hutResults div:nth-child(even){
   background: #ccc;
 }
 .place{
@@ -69,7 +69,7 @@ section.content{
     padding: 0 2%;
     text-decoration: none;
     color: #562703;
-    line-height: 20px;
+    line-height: 50px;
 }
 
 .place:hover{
@@ -109,7 +109,7 @@ section.content{
 }
 
 
-.resTemplate{
+.resTemplate, .resHutTemplate{
     display: none;
 }
 
