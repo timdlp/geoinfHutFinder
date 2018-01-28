@@ -60,7 +60,7 @@ section.content{
 .results .result, .hutResults .result{
   height: 50px;
 }
-.results div:nth-child(even){
+.results div:nth-child(even), .hutResults div:nth-child(even){
   background: #ccc;
 }
 .place{
@@ -109,7 +109,7 @@ section.content{
 }
 
 
-.resTemplate{
+.resTemplate, .resHutTemplate{
     display: none;
 }
 
