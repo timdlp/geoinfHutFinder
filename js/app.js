@@ -77,7 +77,7 @@ $(function(){
       map.forEachFeatureAtPixel(pixel,function(feature){
         var distance = Number(feature.get('distance'))/1000;
         var distancePretty = Math.round(distance*100)/100;
-        content.innerHTML = '<b>'+feature.get('name')+'</b><div class="elevation">'+feature.get('elevation')+' m</div><div class="distance">Distance '+distancePretty+' km</div>';
+        content.innerHTML = '<b>'+feature.get('name')+'</b><div class="elevation">Altitude : '+feature.get('elevation')+' m</div><div class="distance">Distance '+distancePretty+' km</div>';
         overlay.setPosition(coord);
       },{
         layerFilter: function(layer){
@@ -108,7 +108,7 @@ function showResults(data){
   $(data.features).each( function(index,e){
     var result = RESULT_TEMPLATE.clone();
     result.removeClass('resTemplate');
-    result.find('a').html(e.place_name);
+    result.find('a').html(e.text+", "+parseReverseGeo(e));
     x = e.geometry.coordinates[0];
     y = e.geometry.coordinates[1];
     center = convert3857([x,y]);
@@ -147,6 +147,37 @@ function lookUpForHuts(center){
   });
   cabanes.setSource(source);
   cabanes.setStyle(redStyle);
+  source.once('change',function(e){
+    if (source.getState() === 'ready'){
+      source.forEachFeature(function(feature){
+        var result = $('.resHutTemplate').clone();
+        result.removeClass('resHutTemplate');
+        result.find('a').html(feature.get('name'));
+        result.appendTo('.hutResults');
+      });
+    }
+  })
+}
+
+function parseReverseGeo(geoData) {
+  // debugger;
+  var region, countryName, placeName, returnStr;
+  if (geoData.context) {
+    $.each(geoData.context, function(i, v) {
+      if (v.id.indexOf('region') >= 0) {
+        region = v.text;
+      }
+      if (v.id.indexOf('country') >= 0) {
+        countryName = v.text;
+      }
+    });
+  }
+  if (region && countryName) {
+    returnStr = region + ", " + countryName;
+  } else {
+    returnStr = geoData.place_name;
+  }
+  return returnStr;
 }
 
 $('.results').delegate('a','click',function(){

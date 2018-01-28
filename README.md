@@ -12,3 +12,8 @@ Ressources :
 * les géodonnées des cabanes : [world_cabanes.zip](http://mediamaps.ch/lib/exe/fetch.php?media=geoinf17:world_cabanes.zip)
 
 ## Démarche
+
+
+## Ce projet utilise les éléments suivants
+
+https://stackoverflow.com/questions/27791801/how-to-get-city-state-country-for-mapbox-using-reverse-geocoding#27792010
