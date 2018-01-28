@@ -74,6 +74,7 @@ $(function() {
   map.addLayer(cabanes);
   map.getView().setCenter(ol.proj.transform([6.5, 46.5], "EPSG:4326", "EPSG:3857"));
   map.getView().setZoom(4);
+  // Click sur les cabanes dans la carte
   map.on('click', function(event) {
     coord = event.coordinate;
     pixel = event.pixel;
@@ -88,12 +89,13 @@ $(function() {
       }
     });
   });
-
+  // Gestion de la recherche avec Enter
   $('#nomCabane').keyup(function(e) {
     if (e.keyCode == 13) {
       $('.searchBtn').click();
     }
   });
+  //Gestion du click sur le bouton recherche
   $('.searchBtn').on('click', function() {
     mapboxClient.geocodeForward($('#nomCabane').val(), function(err, data, res) {
       showResults(data);
@@ -106,6 +108,7 @@ $(function() {
 
   });
 
+//Affichage des résultats en liste
   function showResults(data) {
     $('.results').empty();
     $(data.features).each(function(index, e) {
@@ -121,12 +124,12 @@ $(function() {
     });
     $('.results').find('a').first().addClass('current');
   }
-
+  //Conversion en EPSG:3857 pour carte.
   function convert3857(center) {
     result = ol.proj.transform(center, "EPSG:4326", "EPSG:3857");
     return result
   }
-
+  // Affichage du lieu sur carte
   function showPlace(center) {
     resultat.getSource().clear();
     map.getView().setCenter(center);
@@ -137,7 +140,7 @@ $(function() {
     feature.setStyle(greenStyle);
     resultat.getSource().addFeature(feature);
   }
-
+  // Recherche des cabanes à 10km
   function lookUpForHuts(center) {
     cabanes.getSource().clear();
     var x = center[0];
@@ -170,6 +173,7 @@ $(function() {
     cabanes.setStyle(redStyle);
   }
 
+  // City, State Mapbox - copié de stackoverflow
   function parseReverseGeo(geoData) {
     // debugger;
     var region, countryName, placeName, returnStr;
@@ -190,7 +194,7 @@ $(function() {
     }
     return returnStr;
   }
-
+  // Gestion du click sur un résultat Geocoding
   $('.results').delegate('a', 'click', function() {
     $('.current').removeClass('current');
     $(this).addClass('current');
@@ -199,7 +203,7 @@ $(function() {
     showPlace([x, y]);
     lookUpForHuts([x, y]);
   });
-
+  // gestion du click dans la liste des cabanes
   $('.hutResults').delegate('a', 'click', function() {
     var x = Number($(this).attr('data-x'));
     var y = Number($(this).attr('data-y'));
@@ -212,17 +216,7 @@ $(function() {
     overlay.setPosition([x,y+1000]);
   });
 
-
-
-
-
-
-
-
-
-
-  // responsive
-
+  // Responsive
   $(window).on("resize", function() {
     if (Modernizr.mq(MQ_SMARTPHONE)) {
       $(".icon").off("click");
@@ -238,5 +232,4 @@ $(function() {
     }
   });
   $(window).trigger("resize");
-
 });
